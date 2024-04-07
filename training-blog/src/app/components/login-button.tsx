@@ -6,7 +6,7 @@ interface LogInButtonProps {
 
 }
 
-export const LogInButton: FC<LoginButtonProps> = (props) => {
+export const LogInButton: FC<LogInButtonProps> = (props) => {
   return (
     <Button
       onClick={() => signIn()}
