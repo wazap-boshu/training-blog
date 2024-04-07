@@ -22,9 +22,6 @@ export default function Home() {
   }, [])
 
   const isAdmin = () => {
-    console.log(session?.user.email)
-    console.log(process.env.ADMIN_USER)
-    console.log("------")
     return session?.user?.email == process.env.ADMIN_USER;
   }
 
