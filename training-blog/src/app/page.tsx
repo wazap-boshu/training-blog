@@ -1,12 +1,17 @@
 "use client";
 
+import { Typography, Button } from "@mui/material";
+import Grid from '@mui/material/Grid';
 import { useEffect, useState } from "react";
-import { LogInButton } from "./components/login-button"
 import { PostSummary } from "./components/post-summary";
 import { Post } from "./models/post";
 import { PostRepository } from "./repositories/post-repository";
+import { useSession } from "next-auth/react";
+
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
+
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     const init = async () => {
@@ -16,16 +21,39 @@ export default function Home() {
     init();
   }, [])
 
+  const isAdmin = () => {
+    console.log(session?.user.email)
+    console.log(process.env.ADMIN_USER)
+    console.log("------")
+    return session?.user?.email == process.env.ADMIN_USER;
+  }
+
   return (
     <>
-      {/* ブログのヘッダ */}
-      {/* ブログタイトル */}
-      {/* ブログ記事一覧ビュー */}
-      <h1>ブログ</h1>
-
-      <>日々の筋トレ日記</>
-      <h2>記事一覧</h2>
-      <LogInButton/>
+      <Grid container>
+        <Grid item xs={8}>
+          <Typography
+            variant="body1"
+          >
+            記事一覧
+          </Typography>
+        </Grid>
+        <Grid
+          item
+          xs={4}
+          sx={{
+            alignItems: "right"
+          }}>
+          {
+            isAdmin() &&
+            <Button
+              variant="contained"
+            >
+              記事作成
+            </Button>
+          }
+        </Grid>
+      </Grid>
       {posts.map(post => {
         return (
           <PostSummary
