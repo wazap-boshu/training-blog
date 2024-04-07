@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "../../node_modules/next/link";
-import { PostDetail } from "./components/post-detail"
+import { LogInButton } from "./components/login-button"
 import { PostSummary } from "./components/post-summary";
 import { Post } from "./models/post";
 import { PostRepository } from "./repositories/post-repository";
@@ -26,7 +25,7 @@ export default function Home() {
 
       <>日々の筋トレ日記</>
       <h2>記事一覧</h2>
-      <Link href={"/post/1"}>これはリンク </Link>
+      <LogInButton/>
       {posts.map(post => {
         return (
           <PostSummary
