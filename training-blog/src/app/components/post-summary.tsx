@@ -11,7 +11,7 @@ export const PostSummary: FC<PostSummaryProps> = (props) => {
   const { post } = props;
 
   const content = () => {
-    return post.content.slice(0, 50);
+    return post.content.replace("\\n", "").slice(0, 50);
   }
 
   return (
@@ -23,7 +23,7 @@ export const PostSummary: FC<PostSummaryProps> = (props) => {
     >
       <Link href={`/posts/${post.id}`}>
         <Typography
-          variant={"h3"}
+          variant={"h4"}
         >
           {post.title}
         </Typography>

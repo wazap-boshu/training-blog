@@ -3,7 +3,7 @@ import { PostDetail } from "@/app/components/post-detail";
 import { Post } from "@/app/models/post";
 import { PostRepository } from "@/app/repositories/post-repository";
 import { useEffect, useState } from "react";
-import { useParams, useRouter, useSearchParams } from "../../../../node_modules/next/navigation"
+import { useParams } from "../../../../node_modules/next/navigation"
 
 export default function PostPage() {
 
