@@ -22,13 +22,12 @@ export const MultipleTypography: FC<MultipleTypographyProps> = (props) => {
       {
         splited().map(text => {
           return (
-            <>
-              <Typography
-                sx={sx}
-              >
-                {text}
-              </Typography>
-            </>
+            <Typography
+              key={text}
+              sx={sx}
+            >
+              {text}
+            </Typography>
           )
         })
       }
