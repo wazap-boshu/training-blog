@@ -1,21 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "../../node_modules/next/link";
 import { PostDetail } from "./components/post-detail"
+import { PostSummary } from "./components/post-summary";
 import { Post } from "./models/post";
 import { PostRepository } from "./repositories/post-repository";
 export default function Home() {
-
-  const post = new Post("id", "初めての投稿", "これは初めての投稿", new Date())
-
-
-  const [txt, setText] = useState<string>();
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const init = async () => {
-
-      const response = await new PostRepository().get();
-      console.log(response)
+      const posts = await new PostRepository().get();
+      setPosts(posts)
     }
     init();
   }, [])
@@ -25,15 +22,18 @@ export default function Home() {
       {/* ブログのヘッダ */}
       {/* ブログタイトル */}
       {/* ブログ記事一覧ビュー */}
-      <h1>これはタイトルです</h1>
+      <h1>ブログ</h1>
 
-      <>これは日々の筋トレ日記</>
+      <>日々の筋トレ日記</>
       <h2>記事一覧</h2>
-      <PostDetail
-        post={post}
-      ></PostDetail>
-
-      <h2>{txt} </h2>
+      <Link href={"/post/1"}>これはリンク </Link>
+      {posts.map(post => {
+        return (
+          <PostSummary
+            post={post}
+          />
+        )
+      })}
     </>
   );
 }
