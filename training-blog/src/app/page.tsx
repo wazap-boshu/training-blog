@@ -30,6 +30,7 @@ export default function Home() {
       {posts.map(post => {
         return (
           <PostSummary
+            key={post.id}
             post={post}
           />
         )
