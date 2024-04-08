@@ -11,7 +11,7 @@ export const PostSummary: FC<PostSummaryProps> = (props) => {
   const { post } = props;
 
   const content = () => {
-    return post.content.replace("\\n", "").slice(0, 50);
+    return post.content.replaceAll("\\n", "").slice(0, 50);
   }
 
   return (

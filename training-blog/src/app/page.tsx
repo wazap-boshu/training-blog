@@ -21,6 +21,7 @@ export default function Home() {
     init();
   }, [])
 
+  // TODO: 専用クラス化する
   const isAdmin = () => {
     // TODO: セキュリティ上の脆弱性がある？
     return session?.user?.email == process.env.NEXT_PUBLIC_ADMIN_USER;
