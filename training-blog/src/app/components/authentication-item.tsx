@@ -12,7 +12,7 @@ interface AuthenticationItemProps {
 export const AuthenticationItem: FC<AuthenticationItemProps> = (props) => {
 
   const { data: session, status } = useSession()
-
+  
   if (status == "authenticated") {
     return (
       <>
