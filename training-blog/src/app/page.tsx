@@ -22,7 +22,8 @@ export default function Home() {
   }, [])
 
   const isAdmin = () => {
-    return session?.user?.email == process.env.ADMIN_USER;
+    // TODO: セキュリティ上の脆弱性がある？
+    return session?.user?.email == process.env.NEXT_PUBLIC_ADMIN_USER;
   }
 
   return (
