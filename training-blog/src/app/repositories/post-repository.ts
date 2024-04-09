@@ -1,15 +1,29 @@
-import { prisma } from "../libs/prisma";
 import { Post } from "../models/post";
 
 export class PostRepository {
-  constructor() {
+  constructor() {}
 
-  }
-
-  save(
-    post: Post
+  /**
+   * ポストの作成
+   * @param title タイトル
+   * @param content コンテンツ
+   * @returns 作成された
+   */
+  async save(
+    title: string,
+    content: string,
   ) {
-    // TODO: 
+    const response = await fetch("/api/posts/create", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ title, content }),
+    })
+
+    const data = await response.json();
+
+    return new Post(data.id, data.title, data.content, data.date)
   }
 
   /**
@@ -17,7 +31,7 @@ export class PostRepository {
    * @returns ポスト一覧
    */
   async get() {
-    const response = await fetch("api/posts");
+    const response = await fetch("/api/posts");
 
     if (response.ok) {
       const data = await response.json() as Array<any>
