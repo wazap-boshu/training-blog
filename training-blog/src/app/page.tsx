@@ -7,11 +7,14 @@ import { PostSummary } from "./components/post-summary";
 import { Post } from "./models/post";
 import { PostRepository } from "./repositories/post-repository";
 import { useSession } from "next-auth/react";
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   const { data: session, status } = useSession();
+
+  const router = useRouter()
 
   useEffect(() => {
     const init = async () => {
@@ -27,10 +30,14 @@ export default function Home() {
     return session?.user?.email == process.env.NEXT_PUBLIC_ADMIN_USER;
   }
 
+  const handleClickCreateButton = () => {
+    router.push(`/posts/new`)
+  }
+
   return (
     <>
       <Grid container>
-        <Grid item xs={8}>
+        <Grid item xs={10}>
           <Typography
             variant="body1"
           >
@@ -39,7 +46,7 @@ export default function Home() {
         </Grid>
         <Grid
           item
-          xs={4}
+          xs={2}
           sx={{
             alignItems: "right"
           }}>
@@ -47,6 +54,7 @@ export default function Home() {
             isAdmin() &&
             <Button
               variant="contained"
+              onClick={handleClickCreateButton}
             >
               記事作成
             </Button>
