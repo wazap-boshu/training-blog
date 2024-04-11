@@ -1,8 +1,7 @@
 import { FC } from "react"
 import { Box, Typography } from "../../../node_modules/@mui/material/index"
 import { Post } from "../models/post"
-import { MultipleTypography } from "./multiple-typography";
-
+import ReactMarkdown from 'react-markdown';
 
 interface PostDetailProps {
   post: Post
@@ -29,9 +28,11 @@ export const PostDetail: FC<PostDetailProps> = (props) => {
           day: "2-digit"
         })}
       </Typography>
-      <MultipleTypography>
+      <ReactMarkdown
+        className={"markdown"}
+      >
         {post.content}
-      </MultipleTypography>
+      </ReactMarkdown>
     </Box>
   )
 }
