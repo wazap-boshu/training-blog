@@ -65,7 +65,7 @@ export class PostRepository {
       );
 
     } else {
-      throw Error("CONTENT NOT EXIST");
+      throw Error(`CONTENT NOT EXIST ${response}`);
     }
   }
 }
