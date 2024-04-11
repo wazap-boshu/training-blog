@@ -2,6 +2,8 @@
 import { PostDetail } from "@/app/components/post-detail";
 import { Post } from "@/app/models/post";
 import { PostRepository } from "@/app/repositories/post-repository";
+import { Button } from "@mui/base";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useParams } from "../../../../node_modules/next/navigation"
 
@@ -13,19 +15,33 @@ export default function PostPage() {
 
   const [post, setPost] = useState<Post>();
 
+  const router = useRouter();
+
   useEffect(() => {
     const prepare = async () => {
       const post = await new PostRepository().getById(id as string);
       setPost(post);
     }
     prepare();
-  }, [])
+  }, []);
 
-  return (<>{
-    post &&
-    <PostDetail
-      post={post}
-    />
+  const handleClickBackBuutton = () => {
+    router.back();
   }
-  </>)
+
+  return (
+    <>
+      {
+        post &&
+        <PostDetail
+          post={post}
+        />
+      }
+      <Button
+        onClick={handleClickBackBuutton}
+      >
+        戻る
+      </Button>
+    </>
+  )
 }

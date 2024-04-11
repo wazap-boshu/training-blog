@@ -1,10 +1,13 @@
 "use client"
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { PostRepository } from "@/app/repositories/post-repository";
 import { useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
+import { NeedLogin } from "@/app/components/need-login";
+
 
 export default function PostCreatePage() {
   const router = useRouter()
@@ -32,31 +35,43 @@ export default function PostCreatePage() {
   }
 
   return (
-    <Box
-      sx={{ m: 1, p: 3 }}
-    >
-      <TextField
-        required
-        id="outlined-required"
-        label="Required"
-        fullWidth
-        onChange={handleChangeTitle}
-      />
-      <br />
-      <TextField
-        id="outlined-multiline-flexible"
-        label="Multiline"
-        multiline
-        rows={5}
-        fullWidth
-        onChange={handleChangeContent}
-      />
-      <Button
-        variant="contained"
-        onClick={handleClickPostButton}
+    <NeedLogin>
+      <Box
+        sx={{ m: 1, p: 3 }}
       >
-        投稿する
-      </Button>
-    </Box>
+        <Typography
+          variant={"body1"}
+        >
+          プレビュー
+        </Typography>
+        <ReactMarkdown
+          className={"markdown"}
+        >
+          {content}
+        </ReactMarkdown>
+        <TextField
+          required
+          id="outlined-required"
+          label="Required"
+          fullWidth
+          onChange={handleChangeTitle}
+        />
+        <br />
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Multiline"
+          multiline
+          rows={5}
+          fullWidth
+          onChange={handleChangeContent}
+        />
+        <Button
+          variant="contained"
+          onClick={handleClickPostButton}
+        >
+          投稿する
+        </Button>
+      </Box>
+    </NeedLogin>
   )
 }
