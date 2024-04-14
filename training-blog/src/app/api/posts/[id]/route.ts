@@ -5,6 +5,8 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   try {
     const id = params.id
 
+    console.log(id)
+
     const post = await prisma.post.findFirst({
       where: {
         id: id

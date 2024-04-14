@@ -53,6 +53,8 @@ export class PostRepository {
   async getById(id: string) {
     const response = await fetch(`/api/posts/${id}`);
 
+    console.log(response)
+
     if (response.ok) {
       const data = await response.json();
 
