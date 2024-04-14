@@ -2,6 +2,7 @@ import { prisma } from "@/app/libs/prisma";
 import { NextRequest, NextResponse } from "../../../../../node_modules/next/server";
 import { options } from "@/app/options";
 import { getServerSession } from "next-auth/next";
+import {PrismaClient} from "../../../../../node_modules/.prisma/client/index";
 
 export async function GET(request: Request,
   { params }: { params: { id: string } },
@@ -14,7 +15,7 @@ export async function GET(request: Request,
       return new NextResponse("User ID is required " + params, { status: 400 });
     }
 
-    const post = await prisma.post.findUnique({
+    const post = await new PrismaClient().post.findUnique({
       where: {
         id: id
       }
