@@ -7,11 +7,9 @@ export async function GET(request: Request, { params }: { params: { id: string }
   try {
     const id = params.id;
 
-    const post = await prisma.post.findMany({
-      where: {
-        id: id,
-      }
-    })
+    const posts = await prisma.post.findMany()
+
+    const post = posts[0]
 
     return NextResponse.json({post: post});
   } catch {
