@@ -15,10 +15,7 @@ export async function GET(request: Request,
       return new NextResponse("User ID is required " + params, { status: 400 });
     }
 
-    let cli = new PrismaClient()
-    mark = mark + cli
-
-    const post = await new PrismaClient().post.findUnique({
+    const post = await prisma.post.findUnique({
       where: {
         id: id
       }
