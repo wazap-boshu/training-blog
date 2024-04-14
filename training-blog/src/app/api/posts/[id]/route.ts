@@ -6,8 +6,10 @@ import { getServerSession } from "next-auth/next";
 export async function GET(request: Request,
   { params }: { params: { id: string } },
 ) {
+  let mark = ""
   try {
     const id = params.id;
+    mark = mark + id
     if (!id) {
       return new NextResponse("User ID is required " + params, { status: 400 });
     }
@@ -17,9 +19,13 @@ export async function GET(request: Request,
         id: id
       }
     })
+    mark = mark + JSON.stringify(post)
 
     return NextResponse.json(post);
   } catch (error) {
-    return NextResponse.json(error);
+    return NextResponse.json({
+      error: error,
+      mark: mark
+    });
   }
 }
