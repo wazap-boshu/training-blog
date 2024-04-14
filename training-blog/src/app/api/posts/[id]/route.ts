@@ -9,13 +9,18 @@ export async function GET(request: Request) {
     const id = "clur2zx6t0001x8n3pm7czvmo";
     // const id = params.id
 
-    const post = await prisma.post.findFirst({
-      where: {
-        id: id
-      }
-    })
+    // const post = await prisma.post.findFirst({
+    //   where: {
+    //     id: id
+    //   }
+    // })
 
-    return NextResponse.json(post);
+    return NextResponse.json({
+      id: "testid",
+      title: "タイトル",
+      content: "これはこれです",
+      date: new Date()
+    });
   } catch {
     return NextResponse.error();
   }
