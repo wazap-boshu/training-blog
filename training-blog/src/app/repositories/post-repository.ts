@@ -65,7 +65,7 @@ export class PostRepository {
       );
 
     } else {
-      throw Error(`CONTENT NOT EXIST ${response}`);
+      throw Error(`SOMETHING HAPPENED ${JSON.stringify(response)}`);
     }
   }
 }
