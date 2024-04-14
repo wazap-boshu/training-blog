@@ -55,14 +55,13 @@ export class PostRepository {
 
     if (response.ok) {
       const data = await response.json();
-      const post = data.post
 
       // TODO: ファクトリ？
       return new Post(
-        post.id,
-        post.title,
-        post.content,
-        new Date(post.date)
+        data.id,
+        data.title,
+        data.content,
+        new Date(data.date)
       );
 
     } else {
