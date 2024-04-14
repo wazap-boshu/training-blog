@@ -7,12 +7,19 @@ export async function GET(request: Request, { params }: { params: { id: string }
   try {
     const id = params.id;
 
-    const posts = await prisma.post.findMany()
+    const post = await prisma.post.findUnique({
+      where: {
+        id: id
+      }
+    })
 
-    const post = posts[0]
-
-    return NextResponse.json([post]);
-  } catch {
-    return NextResponse.error();
+    return NextResponse.json({
+      id: "testid",
+      title: "タイトル",
+      content: "これはこれです",
+      date: new Date(),
+    });
+  } catch (error) {
+    return NextResponse.json(error);
   }
 }
