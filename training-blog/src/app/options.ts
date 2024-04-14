@@ -6,7 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 export const options: NextAuthOptions = {
         debug: true,
         session: {strategy: "jwt"},
-        secret: "LDplcYpMbuG8go0hvn7A70irxYZmVR8mRM4KpY6D4tw=",
+        secret: process.env.NEXTAUTH_SECRET,
         providers: [
             GoogleProvider({
                 clientId: process.env.GOOGLE_CLIENT_ID!,
