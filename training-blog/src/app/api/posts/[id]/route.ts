@@ -5,13 +5,13 @@ import { getServerSession } from "next-auth/next";
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   try {
-    const id = params.id
+    const id = params.id;
 
-    // const post = await prisma.post.findFirst({
-    //   where: {
-    //     id: id
-    //   }
-    // })
+    const post = await prisma.post.findUnique({
+      where: {
+        id: id
+      }
+    })
 
     return NextResponse.json({
       id: "testid",
