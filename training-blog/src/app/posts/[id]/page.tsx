@@ -19,6 +19,7 @@ export default function PostPage() {
 
   useEffect(() => {
     const prepare = async () => {
+      console.log(id)
       const post = await new PostRepository().getById(id as string);
       setPost(post);
     }
