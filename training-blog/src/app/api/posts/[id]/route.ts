@@ -4,9 +4,7 @@ import { NextRequest, NextResponse } from "../../../../../node_modules/next/serv
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const id = params.id
-
-    console.log(id)
-
+    
     const post = await prisma.post.findFirst({
       where: {
         id: id
