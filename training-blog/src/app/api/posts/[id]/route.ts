@@ -11,7 +11,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
     const post = posts[0]
 
-    return NextResponse.json({post: post});
+    return NextResponse.json([post]);
   } catch {
     return NextResponse.error();
   }
