@@ -3,9 +3,11 @@ import { NextRequest, NextResponse } from "../../../../../node_modules/next/serv
 import { options } from "@/app/options";
 import { getServerSession } from "next-auth/next";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+// export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request) {
   try {
-    const id = params.id
+    const id = "clur2zx6t0001x8n3pm7czvmo";
+    // const id = params.id
 
     const post = await prisma.post.findFirst({
       where: {
