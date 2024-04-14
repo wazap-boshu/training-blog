@@ -1,5 +1,5 @@
 import { prisma } from "@/app/libs/prisma"
-import { NextRequest, NextResponse } from "../../../../node_modules/next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { options } from "@/app/options";
 
