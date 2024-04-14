@@ -7,13 +7,13 @@ export async function GET(request: Request, { params }: { params: { id: string }
   try {
     const id = params.id;
 
-    const post = await prisma.post.findUnique({
+    const post = await prisma.post.findMany({
       where: {
-        id: id
+        id: id,
       }
     })
 
-    return NextResponse.json(post);
+    return NextResponse.json({post: post});
   } catch {
     return NextResponse.error();
   }
