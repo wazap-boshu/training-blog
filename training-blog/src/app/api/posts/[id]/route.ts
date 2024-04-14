@@ -13,12 +13,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
       }
     })
 
-    return NextResponse.json({
-      id: "testid",
-      title: "タイトル",
-      content: "これはこれです",
-      date: new Date()
-    });
+    return NextResponse.json(post);
   } catch {
     return NextResponse.error();
   }
