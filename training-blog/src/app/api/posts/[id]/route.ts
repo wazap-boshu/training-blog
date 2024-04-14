@@ -3,9 +3,14 @@ import { NextRequest, NextResponse } from "../../../../../node_modules/next/serv
 import { options } from "@/app/options";
 import { getServerSession } from "next-auth/next";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request,
+  { params }: { params: { id: string } },
+) {
   try {
     const id = params.id;
+    if (!id) {
+      return new NextResponse("User ID is required " + params, { status: 400 });
+    }
 
     const post = await prisma.post.findUnique({
       where: {
