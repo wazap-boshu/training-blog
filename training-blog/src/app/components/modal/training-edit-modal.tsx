@@ -128,13 +128,18 @@ const useTraininigEditModal = (): TrainingEditModalProps => {
   const onSubmit: SubmitHandler<TrainingFormInputType> = async (data) => {
     setBusy(true)
     // データの中身を検証する
-    const response = await new TrainingRepository().save(
-      data.trainingName,
-      Number(data.weight),
-      Number(data.reps),
-      Number(data.set),
-      data.date,
-    )
+    try {
+
+      const response = await new TrainingRepository().save(
+        data.trainingName,
+        Number(data.weight),
+        Number(data.reps),
+        Number(data.set),
+        data.date,
+      )
+    } catch(error) {
+      console.log(error)
+    }
 
     close()
     setBusy(false)

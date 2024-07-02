@@ -21,8 +21,10 @@ export class TrainingRepository {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({trainingName, weight, reps, set, date:"1970-01-01T00:00:00.000Z"}),
+      body: JSON.stringify({trainingName, weight, reps, set, date: "1970-01-01T00:00:00.000Z"}),
     })
+
+    console.log(JSON.stringify({trainingName, weight, reps, set, date: "1970-01-01T00:00:00.000Z"}))
 
     const data = await response.json();
 
