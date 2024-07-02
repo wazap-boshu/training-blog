@@ -8,21 +8,31 @@ import { Post } from "./models/post";
 import { PostRepository } from "./repositories/post-repository";
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
+import { TrainingRepository } from "./repositories/training-repository";
+import { TrainingCard } from "./components/training-cards";
+import { Training } from "./models/training";
+import { TrainingEditModal, useTraininigEditModal } from "./components/modal/training-edit-modal";
+import { Box } from "@mui/system";
 
 export default function Home() {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [trainings, setTrainings] = useState<Training[]>([]);
 
   const { data: session, status } = useSession();
 
   const router = useRouter()
 
+  const trainingEditModal = useTraininigEditModal()
+
   useEffect(() => {
     const init = async () => {
-      const posts = await new PostRepository().get();
-      setPosts(posts)
+      console.log(session?.user?.email)
+      if (!session?.user?.email) { return }
+      const trainings = await new TrainingRepository().getByUserId(session!.user!.email!)
+      console.log(trainings)
+      setTrainings(trainings)
     }
     init();
-  }, [])
+  }, [session])
 
   // TODO: 専用クラス化する
   const isAdmin = () => {
@@ -31,17 +41,21 @@ export default function Home() {
   }
 
   const handleClickCreateButton = () => {
-    router.push(`/posts/new`)
+    trainingEditModal.action.startEdit()
   }
 
   return (
-    <>
+    <Box
+      sx={{
+        height: "500px"
+      }}
+    >
       <Grid container>
         <Grid item xs={10}>
           <Typography
             variant="body1"
           >
-            記事一覧
+            グラフ
           </Typography>
         </Grid>
         <Grid
@@ -51,24 +65,26 @@ export default function Home() {
             alignItems: "right"
           }}>
           {
-            isAdmin() &&
             <Button
               variant="contained"
               onClick={handleClickCreateButton}
             >
-              記事作成
+              記録する
             </Button>
           }
         </Grid>
       </Grid>
-      {posts.map(post => {
+      {trainings.map(training => {
         return (
-          <PostSummary
-            key={post.id}
-            post={post}
+          <TrainingCard
+            key={training.id}
+            training={training}
           />
         )
       })}
-    </>
+      <TrainingEditModal
+        {...trainingEditModal}
+      />
+    </Box>
   );
 }

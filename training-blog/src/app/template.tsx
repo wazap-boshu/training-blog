@@ -9,8 +9,15 @@ export default function Template({ children }: { children: React.ReactNode }) {
     <SessionProvider>
       <AppBar position="static" color="default">
         <Toolbar>
-          <Typography variant="h6" fontWeight="bold" component="div" sx={{ flexGrow: 1 }}>
-            筋トレブログ
+          <Typography variant="h6" fontWeight="bold" component="div"
+            sx={
+              {
+                flexGrow: 1,
+                
+
+              }
+            }>
+            Trainlog
           </Typography>
           <AuthenticationItem />
         </Toolbar>

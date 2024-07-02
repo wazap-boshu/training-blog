@@ -18,12 +18,18 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  height: 100%;
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
+  background-color: rgb(241, 245, 217);
+}
+
+header {
+  background-color: burlywood;
 }
 
 @layer utilities {
