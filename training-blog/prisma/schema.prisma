@@ -14,9 +14,18 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model Post {
-  id        String     @default(cuid()) @id
-  title     String
-  content   String?
-  date      DateTime
+model User {
+  id       String @id @default(cuid())
+  email    String
+  username String
+}
+
+model Training {
+  id           String   @id @default(cuid())
+  userId       String
+  trainingName String
+  date         DateTime
+  weight       Int
+  reps         Int
+  set          Int
 }
