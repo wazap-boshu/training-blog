@@ -3,9 +3,6 @@
 import { Typography, Button } from "@mui/material";
 import Grid from '@mui/material/Grid';
 import { useEffect, useState } from "react";
-import { PostSummary } from "./components/post-summary";
-import { Post } from "./models/post";
-import { PostRepository } from "./repositories/post-repository";
 import { useSession } from "next-auth/react";
 import { useRouter } from 'next/navigation';
 import { TrainingRepository } from "./repositories/training-repository";
