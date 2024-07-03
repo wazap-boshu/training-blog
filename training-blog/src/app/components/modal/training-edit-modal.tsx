@@ -135,7 +135,7 @@ const useTraininigEditModal = (): TrainingEditModalProps => {
         Number(data.weight),
         Number(data.reps),
         Number(data.set),
-        data.date,
+        new Date(data.date),
       )
     } catch(error) {
       console.log(error)

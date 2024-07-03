@@ -1,8 +1,5 @@
 import { prisma } from "@/app/libs/prisma";
-import { NextRequest, NextResponse } from "next/server";
-import { options } from "@/app/options";
-import { getServerSession } from "next-auth/next";
-import { PrismaClient } from ".prisma/client";
+import { NextResponse } from "next/server";
 
 export async function GET(request: Request,
   { params }: { params: { id: string } },
