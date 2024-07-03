@@ -21,10 +21,8 @@ export class TrainingRepository {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({trainingName, weight, reps, set, date: "1970-01-01T00:00:00.000Z"}),
+      body: JSON.stringify({trainingName, weight, reps, set, date}),
     })
-
-    console.log(JSON.stringify({trainingName, weight, reps, set, date: "1970-01-01T00:00:00.000Z"}))
 
     const data = await response.json();
 
@@ -43,7 +41,7 @@ export class TrainingRepository {
 
       // TODO: デコーダ
       return data.map(element => {
-        return new Training(element.id, element.userId, element.trainingName, element.weight, element.reps, element.set, element.date)
+        return new Training(element.id, element.userId, element.trainingName, element.weight, element.reps, element.set, new Date(element.date))
       });
     } else {
       return [];

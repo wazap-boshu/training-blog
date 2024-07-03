@@ -10,6 +10,7 @@ import { TrainingCard } from "./components/training-cards";
 import { Training } from "./models/training";
 import { TrainingEditModal, useTraininigEditModal } from "./components/modal/training-edit-modal";
 import { Box } from "@mui/system";
+import { TrainingGraph } from "./components/training-graph"
 
 export default function Home() {
   const [trainings, setTrainings] = useState<Training[]>([]);
@@ -71,6 +72,11 @@ export default function Home() {
           }
         </Grid>
       </Grid>
+      {
+        <TrainingGraph
+          trainings={trainings}
+        />
+      }
       {trainings.map(training => {
         return (
           <TrainingCard
